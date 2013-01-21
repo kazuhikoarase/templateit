@@ -1,0 +1,56 @@
+=Getting Started=
+
+===1. テンプレートプロジェクトを作る===
+
+テンプレートプロジェクトを作成します (例では
+[http://templateit.googlecode.com/svn/trunk/MyTemplate/ MyTemplate])。
+
+フォルダ構成やソースコード中で使用するパッケージ名(ネームスペース)は com.example とします。
+
+テキストファイルやフォルダに含まれるプロジェクト名とパッケージ名は、 展開時に置換されます。
+
+http://templateit.googlecode.com/svn/assets/tmpl1.png
+
+http://templateit.googlecode.com/svn/assets/tmpl2.png
+
+http://templateit.googlecode.com/svn/assets/tmpl3.png
+
+===2. templateit を配置する===
+
+[http://code.google.com/p/templateit/downloads/list ここ]から
+templateit をダウンロードします。
+
+プロジェクトフォルダの直下に templateit というフォルダを作成し、
+build.xml, config.xml, templateit.jar の 3ファイルを配置します。
+
+http://templateit.googlecode.com/svn/assets/up1.png
+
+===3. パッケージを作る===
+
+コンテクストメニューを開いて build.xml を実行します。
+
+http://templateit.googlecode.com/svn/assets/run1.png
+
+実行後 templateit フォルダを選択、 F5 キーを押下して最新表示すると、
+作成されたパッケージの入った dist というフォルダが表示されます。
+
+http://templateit.googlecode.com/svn/assets/run2.png
+
+===4. 作成したパッケージをテストする===
+
+作成したパッケージをコマンドラインから展開します。
+{{{
+java -jar <作成したパッケージ> <パッケージ名> <プロジェクト名>
+}}}
+{{{
+java -jar MyTemplate.v201301010000.jar a.b.c MyTarget
+}}}
+http://templateit.googlecode.com/svn/assets/test1.png
+
+展開結果を確認します。
+
+http://templateit.googlecode.com/svn/assets/tgt1.png
+
+http://templateit.googlecode.com/svn/assets/tgt2.png
+
+http://templateit.googlecode.com/svn/assets/tgt3.png
