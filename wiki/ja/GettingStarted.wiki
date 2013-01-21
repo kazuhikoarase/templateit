@@ -1,11 +1,6 @@
 =Getting Started=
 
-===1. システム要件===
-
- * Java5 以上
- * Apache Ant 1.5 以上
-
-===2. テンプレートプロジェクトを作る===
+===1. テンプレートプロジェクトを作る===
 
 テンプレートプロジェクトを作成します (例では
 [http://templateit.googlecode.com/svn/trunk/MyTemplate/ MyTemplate])。
@@ -20,7 +15,7 @@ http://templateit.googlecode.com/svn/assets/tmpl2.png
 
 http://templateit.googlecode.com/svn/assets/tmpl3.png
 
-===3. templateit を配置する===
+===2. templateit を配置する===
 
 [http://code.google.com/p/templateit/downloads/list ここ]から
 templateit をダウンロードします。
@@ -30,7 +25,7 @@ build.xml, config.xml, templateit.jar の 3ファイルを配置します。
 
 http://templateit.googlecode.com/svn/assets/deploy1.png
 
-===4. パッケージを作る===
+===3. パッケージを作る===
 
 コンテクストメニューを開いて build.xml を実行します。
 
@@ -41,7 +36,7 @@ http://templateit.googlecode.com/svn/assets/run1.png
 
 http://templateit.googlecode.com/svn/assets/run2.png
 
-===5. 作成したパッケージをテストする===
+===4. 作成したパッケージをテストする===
 
 作成したパッケージをコマンドラインから展開します。
 {{{
