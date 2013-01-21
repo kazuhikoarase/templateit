@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<config>
+
+    <!-- 
+	text file patterns of replace target.
+	*: any string
+	?: any character
+	 -->
+    <text-files>
+
+  		*.txt *.conf *.sh *.bat
+		*.html *.htm *.js *.css
+		*.xml *.xsl *.xsd *.xmi
+		*.py
+		*.php *.tmpl
+
+		<!-- Java -->
+		*.java *.properties
+		*.jsp *.jspx *.tag *.tagx
+		MANIFEST.MF
+		*.jnlp
+		*.scala
+
+		<!-- Eclipse -->
+		.project
+		.classpath
+		org.eclipse.wst.common.component
+
+		<!-- Apache Flex / Adobe Flash Builder -->
+		*.mxml *.as
+		.flexProperties
+		.actionScriptProperties
+
+    </text-files>
+
+</config>
