@@ -25,7 +25,7 @@ Download templateit from
 Create folder 'templateit' under project folder and 
 copy build.xml, config.xml, templateit.jar into.
 
-http://templateit.googlecode.com/svn/assets/up1.png
+http://templateit.googlecode.com/svn/assets/deploy1.png
 
 ===3. Create Package===
 

@@ -23,7 +23,7 @@ templateit をダウンロードします。
 プロジェクトフォルダの直下に templateit というフォルダを作成し、
 build.xml, config.xml, templateit.jar の 3ファイルを配置します。
 
-http://templateit.googlecode.com/svn/assets/up1.png
+http://templateit.googlecode.com/svn/assets/deploy1.png
 
 ===3. パッケージを作る===
 
