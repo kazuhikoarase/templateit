@@ -30,7 +30,9 @@
 			srcdir="${src}/java"
 			destdir="${build}/java"
 			encoding="UTF-8"
-			includeantruntime="false"/>
+			target="1.5"
+			includeantruntime="false"
+		/>
 	</target>
 		
 	<target name="dist" depends="compile">
