@@ -1,3 +1,7 @@
+= Getting Started =
+
+<wiki:toc max_depth="1" />
+
 = 1. Create Template Project =
 
 At first create a template project (ex.
