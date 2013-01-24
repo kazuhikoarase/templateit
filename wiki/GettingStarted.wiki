@@ -1,6 +1,4 @@
-= Getting Started =
-
-== 1. Create Template Project ==
+= 1. Create Template Project =
 
 At first create a template project (ex.
 [http://templateit.googlecode.com/svn/trunk/MyTemplate/ MyTemplate]).
@@ -17,7 +15,7 @@ http://templateit.googlecode.com/svn/assets/tmpl2.png
 
 http://templateit.googlecode.com/svn/assets/tmpl3.png
 
-== 2. Setup templateit ==
+= 2. Setup templateit =
 
 Download templateit from
 [http://code.google.com/p/templateit/downloads/list here].
@@ -27,7 +25,7 @@ copy build.xml, config.xml, templateit.jar into.
 
 http://templateit.googlecode.com/svn/assets/deploy1.png
 
-== 3. Create Package ==
+= 3. Create Package =
 
 Open context menu and run build.xml.
 
@@ -39,7 +37,7 @@ where a package created in.
 
 http://templateit.googlecode.com/svn/assets/run2.png
 
-== 4. Test Your Package ==
+= 4. Test Your Package =
 
 Unpack your package from command line.
 {{{
