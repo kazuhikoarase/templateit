@@ -1,65 +1,63 @@
 <project basedir="." default="all">
 
-	<property name="work" location="work"/>
-	<property name="dist" location="dist"/>
-	<property name="config.properties"
-		location="${work}/config.properties"/>
-	<property name="project.root" location="../"/>
-	
-	<target name="all" depends="jar"/>
+  <property name="work" location="work" />
+  <property name="dist" location="dist" />
+  <property name="config.properties"
+    location="${work}/config.properties" />
+  <property name="project.root" location="../" />
 
-	<target name="init">
-		<tstamp>
-			<format property="timestamp" pattern="yyyyMMddHHmm"/>
-		</tstamp>
-		<mkdir dir="${dist}"/>
-	</target>
+  <target name="all" depends="jar" />
 
-	<target name="clean">
-		<delete dir="${dist}"/>
-	</target>
+  <target name="init">
+    <tstamp>
+      <format property="timestamp" pattern="yyyyMMddHHmm" />
+    </tstamp>
+    <mkdir dir="${dist}" />
+  </target>
 
-	<target name="jar" depends="init">
-		
-		<mkdir dir="${work}"/>
+  <target name="clean">
+    <delete dir="${dist}" />
+  </target>
 
-		<!-- create config.properties -->
-		<java classpath="templateit.jar"
-			classname="com.d_project.templateit.CreateConfig"
-			failonerror="true">
-			<arg value="${config.properties}"/>
-			<arg value="${project.root}"/>
-			<arg value="/template.jar"/>
-			<arg value="config.xml"/>
-		</java>
+  <target name="jar" depends="init">
+    
+    <mkdir dir="${work}" />
 
-		<!-- load config.properties -->
-		<property file="${config.properties}"/>
-		
-		<unjar src="templateit.jar" dest="${work}"/>
+    <!-- create config.properties -->
+    <java classpath="templateit.jar"
+        classname="com.d_project.templateit.CreateConfig"
+        failonerror="true">
+      <arg value="${config.properties}" />
+      <arg value="${project.root}" />
+      <arg value="/template.jar" />
+      <arg value="config.xml" />
+    </java>
 
-		<!-- configure here for template file set. -->
-		<zip destfile="${work}${template-file}">
-			<zipfileset dir="../">
-				<include name="**/*"/>
-				<exclude name="bin/**"/>
-				<exclude name="build/**"/>
-				<exclude name="dist/**"/>
-				<exclude name="templateit/**"/>
-			</zipfileset>
-		</zip>
-		
-		<!-- create executable jar -->
-		<jar jarfile="${dist}/${template-project-name}.v${timestamp}.jar" 
-				manifest="${work}/META-INF/MANIFEST.MF">
-			<zipfileset dir="${work}">
-				<include name="**/*"/>
-				<exclude name="META-INF/MANIFEST.MF"/>
-			</zipfileset>
-		</jar>
+    <!-- load config.properties -->
+    <property file="${config.properties}" />
 
-		<delete dir="${work}"/>
+    <unjar src="templateit.jar" dest="${work}" />
 
-	</target>
+    <!-- configure here for template file set. -->
+    <zip destfile="${work}${template-file}">
+      <zipfileset dir="../">
+        <include name="**/*" />
+        <exclude name="bin/**" />
+        <exclude name="build/**" />
+      </zipfileset>
+    </zip>
+
+    <!-- create executable jar -->
+    <jar jarfile="${dist}/${template-project-name}.v${timestamp}.jar" 
+        manifest="${work}/META-INF/MANIFEST.MF">
+      <zipfileset dir="${work}">
+        <include name="**/*" />
+        <exclude name="META-INF/MANIFEST.MF" />
+      </zipfileset>
+    </jar>
+
+    <delete dir="${work}" />
+
+  </target>
 
 </project>
