@@ -30,7 +30,7 @@
       <arg value="${config.properties}" />
       <arg value="${project.root}" />
       <arg value="/template.jar" />
-      <arg value="config.xml" />
+      <arg value="${basedir}/config.xml" />
     </java>
 
     <!-- load config.properties -->
@@ -40,7 +40,7 @@
 
     <!-- configure here for template file set. -->
     <zip destfile="${work}${template-file}">
-      <zipfileset dir="../">
+      <zipfileset dir="${project.root}">
         <include name="**/*" />
         <exclude name="bin/**" />
         <exclude name="build/**" />

@@ -4,8 +4,9 @@
   <property name="build" location="build" />
   <property name="templateit" location="${build}/templateit" />
   <property name="dist" location="${build}/dist" />
+  <property name="test" location="${build}/test" />
 
-  <target name="all" depends="dist" />
+  <target name="all" depends="dist,test" />
 
   <target name="init">
     <tstamp>
@@ -34,7 +35,7 @@
 
   <target name="dist" depends="compile">
 
-  	<mkdir dir="${templateit}" />
+    <mkdir dir="${templateit}" />
 
   	<copy todir="${templateit}" overwrite="true">
       <fileset dir="${src}/main/assets">
@@ -61,6 +62,22 @@
       </zipfileset>
     </zip>
 
-  </target>
+    </target>
+
+    <target name="test" depends="dist">
+
+    	<mkdir dir="${test}" />
+      <mkdir dir="${test}/templateit" />
+
+      <copy todir="${test}">
+        <fileset dir="${src}/test/MyTemplate" />
+      </copy>
+      <copy todir="${test}/templateit">
+        <fileset dir="${templateit}" />
+      </copy>
+
+      <ant antfile="${test}/templateit/build.xml" inheritall="false" />
+
+    </target>
 
 </project>

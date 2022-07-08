@@ -2,10 +2,10 @@
 <config>
 
     <!-- 
-  text file patterns of replace target.
-  *: any string
-  ?: any character
-   -->
+        text file patterns of replace target.
+        *: any string
+        ?: any character
+      -->
     <text-files>
 
     *.txt *.conf *.sh *.bat
