@@ -1,8 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
 <project basedir="../.." default="all">
 
   <property name="src" location="src" />
   <property name="build" location="build" />
-  <property name="templateit" location="${build}/templateit" />
   <property name="dist" location="${build}/dist" />
   <property name="test" location="${build}/test" />
 
@@ -13,7 +13,8 @@
       <format property="timestamp" pattern="yyyyMMddHHmm" />
     </tstamp>
     <property name="version" value="v${timestamp}" />
-    <property name="target.name" value="templateit.${version}" />
+    <property name="target.name" value="templateit" />
+    <property name="target.fullname" value="${target.name}.${version}" />
     <mkdir dir="${build}" />
   </target>
 
@@ -37,25 +38,20 @@
 
   <target name="dist" depends="compile">
 
-    <mkdir dir="${templateit}" />
-    <property name="templateit.jar" value="templateit.jar" />
+    <mkdir dir="${dist}" />
 
-    <jar jarfile="${templateit}/${templateit.jar}">
+    <jar jarfile="${dist}/${target.name}.jar">
       <zipfileset dir="${build}/java">
         <include name="**/*" />
       </zipfileset>
-      <manifest>
-        <attribute name="Main-Class" value="com.d_project.templateit.Main" />
-      </manifest>
     </jar>
 
-    <mkdir dir="${dist}" />
-    <zip destfile="${dist}/${target.name}.zip">
+    <zip destfile="${dist}/${target.fullname}.zip">
       <zipfileset dir="${src}/main/assets" prefix="${target.name}">
         <include name="*" />
       </zipfileset>
-      <zipfileset dir="${templateit}" prefix="${target.name}">
-        <include name="${templateit.jar}" />
+      <zipfileset dir="${dist}" prefix="${target.name}">
+        <include name="${target.name}.jar" />
       </zipfileset>
     </zip>
 
@@ -68,18 +64,10 @@
     <copy todir="${template-project}">
       <fileset dir="${src}/test/MyTemplate" />
     </copy>
-    <unzip dest="${template-project}" src="${dist}/${target.name}.zip" />
-    <rename src="${template-project}/${target.name}"
-      dest="${template-project}/templateit" />
-<!--
+    <unzip dest="${template-project}" src="${dist}/${target.fullname}.zip" />
     <ant antfile="${template-project}/${target.name}/build.xml"
       inheritall="false" />
-    <java jar="${template-project}/${target.name}/dist/">
-      <arg value="test-proj" />
-      <arg value="aa.bb.cc" />
-    	</java>
--->
-  	
+
   </target>
 
 </project>

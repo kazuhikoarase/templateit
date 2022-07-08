@@ -1,25 +1,27 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <config>
 
-    <!-- 
-        text file patterns of replace target.
-        *: any string
-        ?: any character
-      -->
-    <text-files>
+  <!-- 
+      text file patterns of replace target.
+      *: any string
+      ?: any character
+    -->
+  <text-files>
 
-    *.txt *.conf *.sh *.bat
-    *.html *.htm *.js *.css
+    *.txt *.sh *.bat *.cmd
+    *.html *.htm *.js *.ts
+    *.css *.scss
     *.xml *.xsl *.xsd *.xmi
     *.py
     *.php *.tmpl
+    *.conf *.yml *.yaml
 
     <!-- Java -->
     *.java *.properties
-    *.jsp *.jspx *.tag *.tagx
-    MANIFEST.MF
+    *.jsp *.jspx *.jspf *.tag *.tagx
     *.jnlp
-    *.scala
+    *.groovy *.scala
+    MANIFEST.MF
 
     <!-- Eclipse -->
     .project
@@ -31,6 +33,6 @@
     .flexProperties
     .actionScriptProperties
 
-    </text-files>
+  </text-files>
 
 </config>

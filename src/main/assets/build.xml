@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" ?>
 <project basedir="." default="all">
 
   <property name="work" location="work" />
@@ -43,21 +44,21 @@
     <zip destfile="${work}/${template-file}">
       <zipfileset dir="${project.root}">
         <include name="**/*" />
+        <exclude name="templateit/**" />
         <exclude name="bin/**" />
         <exclude name="build/**" />
-      	<!--
-        <exclude name="templateit/**" />
-        -->
       </zipfileset>
     </zip>
 
     <!-- create executable jar -->
-    <jar jarfile="${dist}/${template-project-name}.v${timestamp}.jar" 
-        manifest="${work}/META-INF/MANIFEST.MF">
+    <jar jarfile="${dist}/${template-project-name}.v${timestamp}.jar">
       <zipfileset dir="${work}">
         <include name="**/*" />
         <exclude name="META-INF/MANIFEST.MF" />
       </zipfileset>
+      <manifest>
+        <attribute name="Main-Class" value="com.d_project.templateit.Main" />
+      </manifest>
     </jar>
 
     <!-- delete work directory -->
