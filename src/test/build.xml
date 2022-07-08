@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project basedir="../.." default="all">
+
+  <property name="target.name" value="templateit" />
+
+	<property name="src" location="src" />
+  <property name="build" location="build" />
+  <property name="dist" location="${build}/dist" />
+
+	<property name="test" location="${build}/test" />
+
+  <target name="all" depends="test" />
+
+	<target name="init">
+    <property name="version" value="v0" />
+    <property name="target.fullname" value="${target.name}.${version}" />
+  </target>
+
+  <target name="test" depends="init">
+    <ant antfile="${src}/main/build.xml" target="clean" inheritall="false" />
+    <ant antfile="${src}/main/build.xml" target="all" inheritall="false">
+    </ant>
+    <ant antfile="${src}/main/build.xml" target="all" inheritall="false">
+      <property name="version" value="${version}" />
+    </ant>
+
+    <property name="template-project" value="MyTemplate" />
+
+    <mkdir dir="${test}/${template-project}" />
+    <copy todir="${test}/${template-project}">
+      <fileset dir="${src}/test/${template-project}" />
+    </copy>
+    <unzip dest="${test}/${template-project}"
+      src="${dist}/${target.fullname}.zip" />
+    <ant antfile="${test}/${template-project}/${target.name}/build.xml"
+        inheritall="false">
+      <property name="version" value="${version}" />
+    </ant>
+    <property name="target.dist"
+      value="${test}/${template-project}/${target.name}/dist" />
+    <java jar="${target.dist}/${template-project}.${version}.jar"
+        dir="${target.dist}" fork="true" failonerror="true">
+      <arg line="aa.b_c.dd myproj" />
+  	</java>
+
+  </target>
+
+</project>

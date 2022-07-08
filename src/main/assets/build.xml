@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<project basedir="." default="all">
+<project xmlns:unless="ant:unless" basedir="." default="all">
 
   <property name="work" location="work" />
   <property name="dist" location="dist" />
@@ -12,6 +12,7 @@
     <tstamp>
       <format property="timestamp" pattern="yyyyMMddHHmm" />
     </tstamp>
+    <property name="version" unless:set="property" value="v${timestamp}" />
     <mkdir dir="${dist}" />
   </target>
 
@@ -51,7 +52,7 @@
     </zip>
 
     <!-- create executable jar -->
-    <jar jarfile="${dist}/${template-project-name}.v${timestamp}.jar">
+    <jar jarfile="${dist}/${template-project-name}.${version}.jar">
       <zipfileset dir="${work}">
         <include name="**/*" />
         <exclude name="META-INF/MANIFEST.MF" />
