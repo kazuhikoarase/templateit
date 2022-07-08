@@ -16,7 +16,7 @@ public class Main {
 
     Properties props = loadConfig();
     args = Util.parseArguments(args, props);
-    
+
     // check argument count.
     if (args.length != 2) {
       System.err.println(String.format(

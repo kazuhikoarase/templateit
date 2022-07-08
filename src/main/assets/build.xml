@@ -2,8 +2,7 @@
 
   <property name="work" location="work" />
   <property name="dist" location="dist" />
-  <property name="config.properties"
-    location="${work}/config.properties" />
+  <property name="config.properties" location="${work}/config.properties" />
   <property name="project.root" location="../" />
 
   <target name="all" depends="jar" />
@@ -20,7 +19,8 @@
   </target>
 
   <target name="jar" depends="init">
-    
+
+    <!-- create work directory -->
     <mkdir dir="${work}" />
 
     <!-- create config.properties -->
@@ -29,7 +29,7 @@
         failonerror="true">
       <arg value="${config.properties}" />
       <arg value="${project.root}" />
-      <arg value="/template.jar" />
+      <arg value="template.jar" />
       <arg value="${basedir}/config.xml" />
     </java>
 
@@ -39,11 +39,14 @@
     <unjar src="templateit.jar" dest="${work}" />
 
     <!-- configure here for template file set. -->
-    <zip destfile="${work}${template-file}">
+    <zip destfile="${work}/${template-file}">
       <zipfileset dir="${project.root}">
         <include name="**/*" />
         <exclude name="bin/**" />
         <exclude name="build/**" />
+      	<!--
+        <exclude name="templateit/**" />
+        -->
       </zipfileset>
     </zip>
 
@@ -56,7 +59,8 @@
       </zipfileset>
     </jar>
 
-    <delete dir="${work}" />
+    <!-- delete work directory -->
+    <delete dir="${work}" failonerror="true" />
 
   </target>
 

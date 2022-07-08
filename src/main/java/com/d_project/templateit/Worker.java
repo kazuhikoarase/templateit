@@ -16,7 +16,7 @@ import java.util.zip.ZipInputStream;
 
 
 /**
- * Unpack
+ * Worker
  * @author kazuhiko arase
  */
 public class Worker {
@@ -76,7 +76,8 @@ public class Worker {
 
     setup();
 
-    ZipInputStream in = new ZipInputStream(getClass().getResourceAsStream(templateFile) );
+    ZipInputStream in = new ZipInputStream(
+        getClass().getResourceAsStream("/" + templateFile) );
     try {
       int unpackCount = 0;
       ZipEntry entry;
