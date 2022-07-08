@@ -28,9 +28,10 @@
         classname="com.d_project.templateit.CreateConfig"
         failonerror="true">
       <arg value="${config.properties}" />
-      <arg value="${project.root}" />
-      <arg value="template.jar" />
       <arg value="${basedir}/config.xml" />
+      <arg value="${project.root}" />
+      <arg value="com.example" />
+      <arg value="template.jar" />
     </java>
 
     <!-- load config.properties -->

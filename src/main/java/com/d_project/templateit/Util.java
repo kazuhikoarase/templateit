@@ -43,10 +43,10 @@ public class Util {
         plainArgs.add(arg);
       }
     }
-    
+
     return plainArgs.toArray(new String[plainArgs.size() ] );
   }
-  
+
   public static Pattern buildTextFilePattern(String textFiles) {
     StringBuilder regex = new StringBuilder();
     regex.append("^(");

@@ -14,7 +14,7 @@ public class Main {
   public static void main(String[] args) 
   throws Exception {
 
-    Properties props = loadConfig();
+    final Properties props = loadConfig();
     args = Util.parseArguments(args, props);
 
     // check argument count.
@@ -25,8 +25,8 @@ public class Main {
       return;
     }
 
-    String packageName = args[0];
-    String projectName = args[1];
+    final String packageName = args[0];
+    final String projectName = args[1];
 
     // check naming.
     if (!Util.isValidPackageName(packageName) ) {
@@ -39,15 +39,16 @@ public class Main {
     }
 
     // start
-    Worker worker = new Worker();
+    final Worker worker = new Worker();
     worker.start(packageName, projectName, props);
   }
 
   private static Properties loadConfig() 
   throws IOException {
-    InputStream in = Main.class.getResourceAsStream("/config.properties");
+    final InputStream in =
+        Main.class.getResourceAsStream("/config.properties");
     try {
-      Properties props = new Properties();
+      final Properties props = new Properties();
       props.load(in);
       return props;
     } finally {

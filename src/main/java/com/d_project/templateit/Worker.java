@@ -24,50 +24,53 @@ public class Worker {
   private final PrintStream logOut = System.out;
 
   private String templateFile;
-  
+
+  private String templatePackageName;
+
   private String packageName;
 
   private String outputDir;
 
   private String textFiles;
-  
+
   private Pattern textFilePattern;
 
   private String replaceFrom;
-  
+
   private String replaceTo;
 
   private String packageNameFrom;
-  
+
   private String packageNameTo;
 
   public Worker() {
   }
 
   public void start(
-    String packageName, 
-    String projectName,
-    Properties props
+    final String packageName,
+    final String projectName,
+    final Properties props
   ) throws Exception {
 
     this.outputDir = props.getProperty("o", projectName);
     this.templateFile = props.getProperty("template-file");
+    this.templatePackageName = props.getProperty("template-package-name");
     this.packageName = packageName;
     this.textFiles = props.getProperty("text-file-extensions");
     this.replaceFrom = props.getProperty("template-project-name");
     this.replaceTo = projectName;
 
     trace();
-    trace(String.format(
-        "templateit %s <http://code.google.com/p/templateit/>",
-        getVersion() ) );
+    trace(String.format("templateit %s", getVersion() ) );
     trace();
     trace(String.format("output dir   : %s", this.outputDir) );
+    trace(String.format("template package name : %s",
+        this.templatePackageName) );
     trace(String.format("package name : %s", this.packageName) );
     trace();
 
     int unpackCount = execute();
-    
+
     trace();
     trace(String.format("%d file(s) unpacked.", unpackCount) );
   }
@@ -97,7 +100,7 @@ public class Worker {
   private void setup() {
 
     // packageName for replace
-    packageNameFrom = "com(\\W{1})example";
+    packageNameFrom = templatePackageName.replaceAll("\\.", "(\\\\W{1})");
     packageNameTo = packageName.replaceAll("\\.", "\\$1");
 
     // parse text extensions

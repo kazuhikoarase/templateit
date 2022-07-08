@@ -18,9 +18,10 @@ public class CreateConfig {
   throws Exception {
 
     final String configProps = args[0];
-    final String projectDir = args[1];
-    final String templateFile = args[2];
-    final String configXml = args[3];
+    final String configXml = args[1];
+    final String projectDir = args[2];
+    final String templatePackageName = args[3];
+    final String templateFile = args[4];
 
     // load config
     final Document config = DocumentBuilderFactory.newInstance().
@@ -40,13 +41,15 @@ public class CreateConfig {
     // output config.properties
     final PrintWriter out = new PrintWriter(configProps, "UTF-8");
     try {
-      
+
       out.print("text-file-extensions=");
       out.println(textExts);
       out.print("template-project-name=");
       out.println(projectName);
       out.print("template-file=");
       out.println(templateFile);
+      out.print("template-package-name=");
+      out.println(templatePackageName);
 
     } finally {
       out.close();
