@@ -79,7 +79,7 @@ public class Worker {
 
     setup();
 
-    ZipInputStream in = new ZipInputStream(
+    final ZipInputStream in = new ZipInputStream(
         getClass().getResourceAsStream("/" + templateFile) );
     try {
       int unpackCount = 0;
@@ -109,20 +109,20 @@ public class Worker {
 
   private void unpackFile(ZipInputStream zipIn, ZipEntry entry)
   throws Exception {
-    
-    File dstFile = new File(outputDir, convertText(entry.getName() ) );
+
+    final File dstFile = new File(outputDir, convertText(entry.getName() ) );
     if (!dstFile.getParentFile().exists() ) {
       dstFile.getParentFile().mkdirs();
     }
-    
-    boolean textFile = isTextFile(
+
+    final boolean textFile = isTextFile(
         new File(entry.getName() ).getName() );
-    String message = String.format("unpacking[%s] %s to %s ...",
+    final String message = String.format("unpacking[%s] %s to %s ...",
         textFile? "t" : "b",
         entry.getName(), dstFile.getPath() );
     trace(message);
-    
-    OutputStream out = new BufferedOutputStream(
+
+    final OutputStream out = new BufferedOutputStream(
         new FileOutputStream(dstFile) );
     try {
       
@@ -139,28 +139,26 @@ public class Worker {
 
   private void outputText(InputStream srcIn, OutputStream dstOut)
   throws Exception {
-    LineInputStream in = new LineInputStream(
+    final LineInputStream in = new LineInputStream(
         new BufferedInputStream(srcIn) );
-
     String line;
     while ( (line = in.readLine() ) != null) {
       line = convertText(line);
       dstOut.write(line.getBytes("ISO-8859-1") );
     }
   }
-  
+
   private void outputBinary(InputStream srcIn, OutputStream dstOut)
   throws Exception {
-    BufferedInputStream in = new BufferedInputStream(srcIn);
-
-    byte[] buffer = new byte[4096];
+    final BufferedInputStream in = new BufferedInputStream(srcIn);
+    final byte[] buffer = new byte[8192];
     int length;
     while ( (length = in.read(buffer) ) != -1) {
       dstOut.write(buffer, 0, length);
     }
   }
   
-  private String convertText(String s) {
+  private String convertText(final String s) {
     return s.replaceAll(packageNameFrom, packageNameTo).
       replaceAll(replaceFrom, replaceTo);
   }
@@ -173,12 +171,12 @@ public class Worker {
     logOut.println(o);
   }
   
-  private boolean isTextFile(String name) {
+  private boolean isTextFile(final String name) {
     return textFilePattern.matcher(name).matches();
   }
   
   private String getVersion() throws Exception {
-    BufferedReader in = new BufferedReader(new InputStreamReader(
+    final BufferedReader in = new BufferedReader(new InputStreamReader(
         getClass().getResourceAsStream("/version"), "ISO-8859-1") );
     try {
       return in.readLine();

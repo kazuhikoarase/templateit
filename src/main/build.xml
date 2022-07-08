@@ -32,53 +32,54 @@
       debug="true"
       includeantruntime="false"
     />
+    <echo file="${build}/java/version" message="${version}" />
   </target>
 
   <target name="dist" depends="compile">
 
     <mkdir dir="${templateit}" />
+    <property name="templateit.jar" value="templateit.jar" />
 
-  	<copy todir="${templateit}" overwrite="true">
-      <fileset dir="${src}/main/assets">
-        <include name="*" />
-        <exclude name="MANIFEST.MF" />
-      </fileset>
-    </copy>
-
-    <echo file="${build}/java/version" message="${version}" />
-
-    <jar manifest="${src}/main/assets/MANIFEST.MF" 
-        jarfile="${templateit}/templateit.jar">
+    <jar jarfile="${templateit}/${templateit.jar}">
       <zipfileset dir="${build}/java">
         <include name="**/*" />
-        <exclude name="META-INF/MANIFEST.MF" />
       </zipfileset>
+      <manifest>
+        <attribute name="Main-Class" value="com.d_project.templateit.Main" />
+      </manifest>
     </jar>
 
     <mkdir dir="${dist}" />
     <zip destfile="${dist}/${target.name}.zip">
+      <zipfileset dir="${src}/main/assets" prefix="${target.name}">
+        <include name="*" />
+      </zipfileset>
       <zipfileset dir="${templateit}" prefix="${target.name}">
-        <include name="**/*" />
-        <exclude name="dist/**" />
+        <include name="${templateit.jar}" />
       </zipfileset>
     </zip>
 
-    </target>
+  </target>
 
-    <target name="test" depends="dist">
+  <target name="test" depends="dist">
 
-    	<mkdir dir="${test}" />
-      <mkdir dir="${test}/templateit" />
-
-      <copy todir="${test}">
-        <fileset dir="${src}/test/MyTemplate" />
-      </copy>
-      <copy todir="${test}/templateit">
-        <fileset dir="${templateit}" />
-      </copy>
-
-      <ant antfile="${test}/templateit/build.xml" inheritall="false" />
-
-    </target>
+    <property name="template-project" location="${test}/MyTemplate" />
+  	<mkdir dir="${template-project}" />
+    <copy todir="${template-project}">
+      <fileset dir="${src}/test/MyTemplate" />
+    </copy>
+    <unzip dest="${template-project}" src="${dist}/${target.name}.zip" />
+    <rename src="${template-project}/${target.name}"
+      dest="${template-project}/templateit" />
+<!--
+    <ant antfile="${template-project}/${target.name}/build.xml"
+      inheritall="false" />
+    <java jar="${template-project}/${target.name}/dist/">
+      <arg value="test-proj" />
+      <arg value="aa.bb.cc" />
+    	</java>
+-->
+  	
+  </target>
 
 </project>
