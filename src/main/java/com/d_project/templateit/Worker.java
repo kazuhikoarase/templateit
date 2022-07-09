@@ -107,7 +107,7 @@ public class Worker {
     textFilePattern = Util.buildTextFilePattern(textFiles);
   }
 
-  private void unpackFile(ZipInputStream zipIn, ZipEntry entry)
+  private void unpackFile(final ZipInputStream zipIn, final ZipEntry entry)
   throws Exception {
 
     final File dstFile = new File(outputDir, convertText(entry.getName() ) );
@@ -157,7 +157,7 @@ public class Worker {
       dstOut.write(buffer, 0, length);
     }
   }
-  
+
   private String convertText(final String s) {
     return s.replaceAll(packageNameFrom, packageNameTo).
       replaceAll(replaceFrom, replaceTo);
@@ -166,15 +166,15 @@ public class Worker {
   private void trace() {
     logOut.println();
   }
-  
+
   private void trace(Object o) {
     logOut.println(o);
   }
-  
+
   private boolean isTextFile(final String name) {
     return textFilePattern.matcher(name).matches();
   }
-  
+
   private String getVersion() throws Exception {
     final BufferedReader in = new BufferedReader(new InputStreamReader(
         getClass().getResourceAsStream("/version"), "ISO-8859-1") );

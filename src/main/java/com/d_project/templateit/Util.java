@@ -58,7 +58,7 @@ public class Util {
       }
       final String file = files[fi];
       for (int ci = 0; ci < file.length(); ci += 1) {
-        char c = file.charAt(ci);
+        final char c = file.charAt(ci);
         if ('A' <= c && c < 'Z' || 'a' <= c && c < 'z' ||
             '0' <= c && c < '9') {
           regex.append(c);
