@@ -23,6 +23,25 @@ public class Util {
     return projectName.matches("^\\w[\\w\\-]*$");
   }
 
+  public static String toPackageNamePattern(final String s) {
+    final StringBuilder buf = new StringBuilder();
+    boolean firstPeriod = false;
+    for (int i = 0; i < s.length(); i += 1) {
+      char c = s.charAt(i);
+      if (c == '.') {
+        if (!firstPeriod) {
+          buf.append("(\\W{1})");
+          firstPeriod = true;
+        } else {
+          buf.append("\\1");
+        }
+      } else {
+        buf.append(c);
+      }
+    }
+    return buf.toString();
+  }
+
   public static String[] parseArguments(
       final String[] args, final Properties props) {
 

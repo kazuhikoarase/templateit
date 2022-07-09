@@ -63,7 +63,7 @@ public class Worker {
     trace();
     trace(String.format("templateit %s", getVersion() ) );
     trace();
-    trace(String.format("output dir   : %s", this.outputDir) );
+    trace(String.format("output dir : %s", this.outputDir) );
     trace(String.format("template package name : %s",
         this.templatePackageName) );
     trace(String.format("package name : %s", this.packageName) );
@@ -100,7 +100,7 @@ public class Worker {
   private void setup() {
 
     // packageName for replace
-    packageNameFrom = templatePackageName.replaceAll("\\.", "(\\\\W{1})");
+    packageNameFrom = Util.toPackageNamePattern(templatePackageName);
     packageNameTo = packageName.replaceAll("\\.", "\\$1");
 
     // parse text extensions
@@ -137,7 +137,8 @@ public class Worker {
     }
   }
 
-  private void outputText(InputStream srcIn, OutputStream dstOut)
+  private void outputText(
+      final InputStream srcIn, final OutputStream dstOut)
   throws Exception {
     final LineInputStream in = new LineInputStream(
         new BufferedInputStream(srcIn) );
@@ -148,7 +149,8 @@ public class Worker {
     }
   }
 
-  private void outputBinary(InputStream srcIn, OutputStream dstOut)
+  private void outputBinary(
+      final InputStream srcIn, final OutputStream dstOut)
   throws Exception {
     final BufferedInputStream in = new BufferedInputStream(srcIn);
     final byte[] buffer = new byte[8192];
