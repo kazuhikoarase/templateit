@@ -32,7 +32,7 @@
       <arg value="${config.properties}" />
       <arg value="${basedir}/config.xml" />
       <arg value="${project.root}" />
-      <arg value="com.example" />
+      <arg value="com.example.bean" />
       <arg value="template.jar" />
     </java>
 

@@ -4,10 +4,10 @@
   <property name="target.name" value="templateit" />
 
 	<property name="src" location="src" />
-  <property name="build" location="build" />
-  <property name="dist" location="${build}/dist" />
+  <property name="target" location="target" />
+  <property name="dist" location="${target}/dist" />
 
-	<property name="test" location="${build}/test" />
+	<property name="test" location="${target}/test" />
 
   <target name="all" depends="test" />
 
