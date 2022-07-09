@@ -14,7 +14,7 @@ import org.w3c.dom.Element;
  */
 public class CreateConfig {
 
-  public static void main(String[] args)
+  public static void main(final String[] args)
   throws Exception {
 
     final String configProps = args[0];

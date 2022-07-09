@@ -13,14 +13,14 @@ public class LineInputStream extends FilterInputStream {
 
   private static final int LF = 0x0a;
 
-  public LineInputStream(InputStream in) {
+  public LineInputStream(final InputStream in) {
     super(in);
   }
 
   public String readLine() throws IOException {
 
-    ByteArrayOutputStream buffer = new ByteArrayOutputStream();
-    
+    final ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+
     try {
       int b;
       while ( (b = in.read() ) != -1) {
@@ -32,7 +32,7 @@ public class LineInputStream extends FilterInputStream {
     } finally {
       buffer.close();
     }
-    
+
     if (buffer.size() == 0) {
       return null;
     }

@@ -15,17 +15,18 @@ public class Util {
   private Util() {
   }
 
-  public static boolean isValidPackageName(String packageName) {
+  public static boolean isValidPackageName(final String packageName) {
     return packageName.matches("^\\w+(\\.\\w+)*$");
   }
 
-  public static boolean isValidProjectName(String projectName) {
+  public static boolean isValidProjectName(final String projectName) {
     return projectName.matches("^\\w[\\w\\-]*$");
   }
 
-  public static String[] parseArguments(String[] args, Properties props) {
+  public static String[] parseArguments(
+      final String[] args, final Properties props) {
 
-    List<String> plainArgs = new ArrayList<String>();
+    final List<String> plainArgs = new ArrayList<String>();
 
     for (String arg : args) {
       if (arg.startsWith("-") ) {
@@ -47,15 +48,15 @@ public class Util {
     return plainArgs.toArray(new String[plainArgs.size() ] );
   }
 
-  public static Pattern buildTextFilePattern(String textFiles) {
-    StringBuilder regex = new StringBuilder();
+  public static Pattern buildTextFilePattern(final String textFiles) {
+    final StringBuilder regex = new StringBuilder();
     regex.append("^(");
-    String[] files = textFiles.split("\\s+");
+    final String[] files = textFiles.split("\\s+");
     for (int fi = 0; fi < files.length; fi += 1) {
       if (fi > 0) {
         regex.append('|');
       }
-      String file = files[fi];
+      final String file = files[fi];
       for (int ci = 0; ci < file.length(); ci += 1) {
         char c = file.charAt(ci);
         if ('A' <= c && c < 'Z' || 'a' <= c && c < 'z' ||
