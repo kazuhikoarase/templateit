@@ -1,2 +1,8 @@
-visit templateit project site:
-  http://code.google.com/p/templateit/
+templateit
+
+your project/
+             templateit/
+                        README.txt
+                        build.xml
+                        config.xml
+                        templateit.jar
