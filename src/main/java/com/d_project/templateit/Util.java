@@ -27,7 +27,7 @@ public class Util {
       char c = s.charAt(i);
       if (c == '.') {
         if (!firstPeriod) {
-          buf.append("(\\W{1})");
+          buf.append("(\\W)");
           firstPeriod = true;
         } else {
           buf.append("\\1");

@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <project xmlns:unless="ant:unless" basedir="." default="all">
 
+  <property name="project.root" location="../" />
+  <property unless:set="property"
+      name="template-package-name" value="com.example" />
+
   <property name="work" location="work" />
   <property name="dist" location="dist" />
-  <property name="project.root" location="../" />
 
   <target name="all" depends="jar" />
 
@@ -11,10 +14,7 @@
     <tstamp>
       <format property="timestamp" pattern="yyyyMMddHHmm" />
     </tstamp>
-    <property unless:set="property"
-        name="version" value="v${timestamp}" />
-    <property unless:set="property"
-        name="template-package-name" value="com.example" />
+    <property unless:set="property" name="version" value="v${timestamp}" />
     <mkdir dir="${dist}" />
   </target>
 
@@ -48,10 +48,15 @@
     <!-- configure here for template file set. -->
     <zip destfile="${work}/${template-file}">
       <zipfileset dir="${project.root}">
+        <!-- includes -->
         <include name="**/*" />
+        <!-- excludes (templateit itself) -->
         <exclude name="templateit/**" />
+        <!-- excludes (others) -->
         <exclude name="bin/**" />
         <exclude name="build/**" />
+        <exclude name="dist/**" />
+        <exclude name="target/**" />
       </zipfileset>
     </zip>
 

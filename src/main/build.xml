@@ -14,7 +14,6 @@
       <format property="timestamp" pattern="yyyyMMddHHmm" />
     </tstamp>
     <property unless:set="property" name="version" value="v${timestamp}" />
-    <property name="target.fullname" value="${target.name}.${version}" />
     <mkdir dir="${target}" />
   </target>
 
@@ -40,7 +39,7 @@
       </zipfileset>
     </jar>
 
-    <zip destfile="${dist}/${target.fullname}.zip">
+    <zip destfile="${dist}/${target.name}.${version}.zip">
       <zipfileset dir="${src}/main/assets" prefix="${target.name}">
         <include name="*" />
       </zipfileset>
