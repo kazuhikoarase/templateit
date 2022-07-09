@@ -2,6 +2,7 @@ package com.d_project.templateit;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Arrays;
 import java.util.Properties;
 
 
@@ -11,17 +12,16 @@ import java.util.Properties;
  */
 public class Main {
 
-  public static void main(String[] args) 
+  public static void main(final String[] args) 
   throws Exception {
 
     final Properties props = loadConfig();
-    args = Util.parseArguments(args, props);
 
     // check argument count.
     if (args.length != 2) {
+      System.err.println(Arrays.asList(args).toString() );
       System.err.println(String.format(
-          "arguments: [-o outputDir] packageName projectName",
-          Main.class.getName() ) );
+          "arguments: [-o=outputDir] packageName projectName") );
       return;
     }
 

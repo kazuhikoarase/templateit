@@ -32,16 +32,30 @@
     </copy>
     <unzip dest="${test}/${template-project}"
       src="${dist}/${target.fullname}.zip" />
-    <ant antfile="${test}/${template-project}/${target.name}/build.xml"
+
+  	<ant antfile="${test}/${template-project}/${target.name}/build.xml"
         inheritall="false">
-      <property name="version" value="${version}" />
+      <property name="version" value="${version}_1" />
     </ant>
-    <property name="target.dist"
+
+  	<ant antfile="${test}/${template-project}/${target.name}/build.xml"
+        inheritall="false">
+      <property name="version" value="${version}_2" />
+      <property name="template-package-name" value="com.example.bean" />
+    </ant>
+
+  	<property name="target.dist"
       value="${test}/${template-project}/${target.name}/dist" />
-    <java jar="${target.dist}/${template-project}.${version}.jar"
+
+  	<java jar="${target.dist}/${template-project}.${version}_1.jar"
         dir="${target.dist}" fork="true" failonerror="true">
-      <arg line="aa.b_c.dd myproj" />
-  	</java>
+      <arg line="aa.b_c.dd myproj_1" />
+    </java>
+
+  	<java jar="${target.dist}/${template-project}.${version}_2.jar"
+        dir="${target.dist}" fork="true" failonerror="true">
+      <arg line="aa.b_c.dd myproj_2" />
+    </java>
 
   </target>
 

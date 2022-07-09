@@ -12,7 +12,10 @@
     <tstamp>
       <format property="timestamp" pattern="yyyyMMddHHmm" />
     </tstamp>
-    <property name="version" unless:set="property" value="v${timestamp}" />
+    <property unless:set="property"
+        name="version" value="v${timestamp}" />
+    <property unless:set="property"
+        name="template-package-name" value="com.example" />
     <mkdir dir="${dist}" />
   </target>
 
@@ -32,7 +35,7 @@
       <arg value="${config.properties}" />
       <arg value="${basedir}/config.xml" />
       <arg value="${project.root}" />
-      <arg value="com.example.bean" />
+      <arg value="${template-package-name}" />
       <arg value="template.jar" />
     </java>
 

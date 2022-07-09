@@ -42,31 +42,6 @@ public class Util {
     return buf.toString();
   }
 
-  public static String[] parseArguments(
-      final String[] args, final Properties props) {
-
-    final List<String> plainArgs = new ArrayList<String>();
-
-    for (String arg : args) {
-      if (arg.startsWith("-") ) {
-        // pop an option
-        arg = arg.substring(1);
-        int index = arg.indexOf("=");
-        if (index != -1) {
-          props.setProperty(
-            arg.substring(0, index),
-            arg.substring(index + 1) );
-        } else {
-          props.setProperty(arg, "");
-        }
-      } else {
-        plainArgs.add(arg);
-      }
-    }
-
-    return plainArgs.toArray(new String[plainArgs.size() ] );
-  }
-
   public static Pattern buildTextFilePattern(final String textFiles) {
     final StringBuilder regex = new StringBuilder();
     regex.append("^(");
