@@ -20,8 +20,14 @@ public class CreateConfig {
     final String configProps = args[0];
     final String configXml = args[1];
     final String projectDir = args[2];
-    final String templatePackageName = args[3];
-    final String templateFile = args[4];
+    final String templateFile = args[3];
+    final String templatePackageName = args[4];
+
+    // check naming.
+    if (!Util.isValidPackageName(templatePackageName) ) {
+      throw new IllegalArgumentException(
+          "bad template package name:" + templatePackageName);
+    }
 
     // load config
     final Document config = DocumentBuilderFactory.newInstance().

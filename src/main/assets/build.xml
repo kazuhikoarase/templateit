@@ -3,7 +3,6 @@
 
   <property name="work" location="work" />
   <property name="dist" location="dist" />
-  <property name="config.properties" location="${work}/config.properties" />
   <property name="project.root" location="../" />
 
   <target name="all" depends="jar" />
@@ -27,6 +26,8 @@
 
     <!-- create work directory -->
     <mkdir dir="${work}" />
+    <property name="config.properties"
+        location="${work}/config.properties" />
 
     <!-- create config.properties -->
     <java classpath="templateit.jar"
@@ -35,8 +36,8 @@
       <arg value="${config.properties}" />
       <arg value="${basedir}/config.xml" />
       <arg value="${project.root}" />
-      <arg value="${template-package-name}" />
       <arg value="template.jar" />
+      <arg value="${template-package-name}" />
     </java>
 
     <!-- load config.properties -->
