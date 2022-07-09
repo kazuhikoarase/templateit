@@ -69,7 +69,7 @@ public class Worker {
     trace(String.format("package name : %s", this.packageName) );
     trace();
 
-    int unpackCount = execute();
+    final int unpackCount = execute();
 
     trace();
     trace(String.format("%d file(s) unpacked.", unpackCount) );

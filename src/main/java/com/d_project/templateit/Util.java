@@ -1,8 +1,5 @@
 package com.d_project.templateit;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Properties;
 import java.util.regex.Pattern;
 
 
