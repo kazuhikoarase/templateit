@@ -25,40 +25,43 @@
       <property name="version" value="${version}" />
     </ant>
 
-    <property name="template-project" value="MyTemplate" />
+    <property name="test-templates" value="templates" />
 
-    <mkdir dir="${test}/${template-project}" />
-    <copy todir="${test}/${template-project}">
-      <fileset dir="${src}/test/${template-project}"
+  	<mkdir dir="${test}/${test-templates}" />
+    <copy todir="${test}/${test-templates}">
+      <fileset dir="${src}/test/${test-templates}"
         defaultexcludes="false" />
     </copy>
-    <unzip dest="${test}/${template-project}"
-      src="${dist}/${target.fullname}.zip" />
 
-    <ant antfile="${test}/${template-project}/${target.name}/build.xml"
+    <property name="test-template-project" value="legacy-web" />
+    <property name="test-template-project-path"
+        location="${test}/${test-templates}/${test-template-project}" />
+    <property name="target.dist"
+      value="${test-template-project-path}/${target.name}/dist" />
+
+    <unzip dest="${test-template-project-path}"
+        src="${dist}/${target.fullname}.zip" />
+
+    <ant antfile="${test-template-project-path}/${target.name}/build.xml"
         inheritall="false">
       <property name="version" value="${version}_1" />
     </ant>
-    <ant antfile="${test}/${template-project}/${target.name}/build.xml"
+    <java jar="${target.dist}/${test-template-project}.${version}_1.jar"
+        dir="${target.dist}" fork="true" failonerror="true">
+      <arg line="aa.b_c.dd myproj_1" />
+    </java>
+    <ant antfile="${target.dist}/myproj_1/src/main/build.xml"
+        inheritall="false" />
+
+    <ant antfile="${test-template-project-path}/${target.name}/build.xml"
         inheritall="false">
       <property name="version" value="${version}_2" />
       <property name="template-package-name" value="com.example.bean" />
     </ant>
-
-    <property name="target.dist"
-      value="${test}/${template-project}/${target.name}/dist" />
-
-    <java jar="${target.dist}/${template-project}.${version}_1.jar"
-        dir="${target.dist}" fork="true" failonerror="true">
-      <arg line="aa.b_c.dd myproj_1" />
-    </java>
-    <java jar="${target.dist}/${template-project}.${version}_2.jar"
+    <java jar="${target.dist}/${test-template-project}.${version}_2.jar"
         dir="${target.dist}" fork="true" failonerror="true">
       <arg line="aa.b_c.dd myproj_2" />
     </java>
-
-    <ant antfile="${target.dist}/myproj_1/src/main/build.xml"
-        inheritall="false" />
     <ant antfile="${target.dist}/myproj_2/src/main/build.xml"
         inheritall="false" />
 
