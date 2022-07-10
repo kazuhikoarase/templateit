@@ -2,10 +2,42 @@
 <project xmlns:unless="ant:unless" basedir="." default="all">
 
   <property name="project.root" location="../" />
-  <property unless:set="property"
-      name="template-package-name" value="com.example" />
+  <property name="template-package-name" value="com.example"
+      unless:set="property" />
 
-  <property name="work" location="work" />
+  <!-- 
+      text file patterns of replace target.
+      *: any string
+      ?: any character
+    -->
+  <property name="text-files">
+    *.txt *.md *.sh *.bat *.cmd *.ps1
+    *.html *.htm *.js *.jsx *.json *.ts
+    *.css *.scss
+    *.xml *.xsl *.xsd *.xmi
+    *.py
+    *.php *.tmpl
+    *.conf *.yml *.yaml
+
+    <!-- Java -->
+    *.java *.properties
+    *.jsp *.jspx *.jspf *.tag *.tagx
+    *.jnlp
+    *.groovy *.scala *.gradle
+    MANIFEST.MF
+
+    <!-- Eclipse -->
+    .project
+    .classpath
+    org.eclipse.wst.common.component
+
+    <!-- Apache Flex / Adobe Flash Builder -->
+    *.mxml *.as
+    .flexProperties
+    .actionScriptProperties
+  </property>
+
+	<property name="work" location="work" />
   <property name="dist" location="dist" />
 
   <target name="all" depends="jar" />
@@ -14,11 +46,11 @@
     <tstamp>
       <format property="timestamp" pattern="yyyyMMddHHmm" />
     </tstamp>
-    <property unless:set="property" name="version" value="v${timestamp}" />
+    <property name="version" value="v${timestamp}" unless:set="property" />
     <mkdir dir="${dist}" />
   </target>
 
-  <target name="clean">
+	<target name="clean">
     <delete dir="${dist}" />
   </target>
 
@@ -34,7 +66,7 @@
         classname="com.d_project.templateit.CreateConfig"
         failonerror="true">
       <arg value="${config.properties}" />
-      <arg value="${basedir}/config.xml" />
+      <arg value="${text-files}" />
       <arg value="${project.root}" />
       <arg value="template.jar" />
       <arg value="${template-package-name}" />
@@ -61,7 +93,8 @@
     </zip>
 
     <!-- create executable jar -->
-    <jar jarfile="${dist}/${template-project-name}.${version}.jar">
+    <jar jarfile="${dist}/${template-project-name}.${version}.jar"
+        filesonly="true">
       <zipfileset dir="${work}">
         <include name="**/*" />
         <exclude name="META-INF/MANIFEST.MF" />

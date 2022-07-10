@@ -18,7 +18,7 @@ public class CreateConfig {
   throws Exception {
 
     final String configProps = args[0];
-    final String configXml = args[1];
+    final String textFiles = args[1];
     final String projectDir = args[2];
     final String templateFile = args[3];
     final String templatePackageName = args[4];
@@ -29,13 +29,7 @@ public class CreateConfig {
           "bad template package name:" + templatePackageName);
     }
 
-    // load config
-    final Document config = DocumentBuilderFactory.newInstance().
-      newDocumentBuilder().parse(new File(configXml) );
-    final String textExts = ( (Element)config.
-        getElementsByTagName("text-files").
-        item(0) ).
-        getTextContent().replaceAll("\\s+", "\u0020");
+    final String textExts = textFiles.replaceAll("\\s+", "\u0020");
 
     final String projectName = new File(projectDir).getName();
 

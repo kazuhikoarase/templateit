@@ -13,7 +13,7 @@
     <tstamp>
       <format property="timestamp" pattern="yyyyMMddHHmm" />
     </tstamp>
-    <property unless:set="property" name="version" value="v${timestamp}" />
+    <property name="version" value="v${timestamp}" unless:set="property" />
     <mkdir dir="${target}" />
   </target>
 
@@ -40,7 +40,8 @@
     </jar>
 
     <zip destfile="${dist}/${target.name}.${version}.zip">
-      <zipfileset dir="${src}/main/assets" prefix="${target.name}">
+      <zipfileset dir="${src}/main/assets" prefix="${target.name}"
+          defaultexcludes="false">
         <include name="*" />
       </zipfileset>
       <zipfileset dir="${dist}" prefix="${target.name}">
