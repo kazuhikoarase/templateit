@@ -17,9 +17,10 @@
   </target>
 
   <target name="test" depends="init">
-    <ant antfile="${src}/main/build.xml" target="clean" inheritall="false" />
-    <ant antfile="${src}/main/build.xml" target="all" inheritall="false">
-    </ant>
+
+  	<ant antfile="${src}/main/build.xml" target="clean" inheritall="false" />
+    <ant antfile="${src}/main/build.xml" target="all" inheritall="false" />
+
     <ant antfile="${src}/main/build.xml" target="all" inheritall="false">
       <property name="version" value="${version}" />
     </ant>
@@ -28,7 +29,8 @@
 
     <mkdir dir="${test}/${template-project}" />
     <copy todir="${test}/${template-project}">
-      <fileset dir="${src}/test/${template-project}" />
+      <fileset dir="${src}/test/${template-project}"
+        defaultexcludes="false" />
     </copy>
     <unzip dest="${test}/${template-project}"
       src="${dist}/${target.fullname}.zip" />
@@ -54,6 +56,11 @@
         dir="${target.dist}" fork="true" failonerror="true">
       <arg line="aa.b_c.dd myproj_2" />
     </java>
+
+    <ant antfile="${target.dist}/myproj_1/src/main/build.xml"
+        inheritall="false" />
+    <ant antfile="${target.dist}/myproj_2/src/main/build.xml"
+        inheritall="false" />
 
   </target>
 

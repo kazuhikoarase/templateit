@@ -87,7 +87,7 @@
 
     <!-- configure here for template file set. -->
     <zip destfile="${work}/${template-file}">
-      <zipfileset dir="${project.root}">
+      <zipfileset dir="${project.root}" defaultexcludes="false">
         <!-- includes -->
         <include name="**/*" />
         <!-- excludes (templateit work, dist) -->

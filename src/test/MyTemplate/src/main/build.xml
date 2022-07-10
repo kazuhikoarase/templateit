@@ -10,7 +10,7 @@
       debug="true" destdir="${build}/classes" includeantruntime="false" />
 
     <mkdir dir="${dist}" />
-    <war destfile="${dist}/MyTempltate.war"
+    <war destfile="${dist}/MyTemplate.war"
         webxml="${src}/main/webapp/WEB-INF/web.xml" filesonly="true">
       <zipfileset dir="${src}/main/webapp">
         <include name="**/*" />
