@@ -1,0 +1,26 @@
+<project basedir="../.." default="dist">
+
+	<property name="src" location="src" />
+  <property name="build" location="build" />
+  <property name="dist" location="dist" />
+
+	<target name="dist">
+    <mkdir dir="${build}/classes" />
+    <javac srcdir="${src}/main/java" encoding="UTF-8"
+      debug="true" destdir="${build}/classes" includeantruntime="false" />
+
+    <mkdir dir="${dist}" />
+    <war destfile="${dist}/MyTempltate.war"
+        webxml="${src}/main/webapp/WEB-INF/web.xml" filesonly="true">
+      <zipfileset dir="${src}/main/webapp">
+        <include name="**/*" />
+        <exclude name="WEB-INF/web.xml" />
+      </zipfileset>
+      <zipfileset dir="${build}/classes" prefix="WEB-INF/classes">
+        <include name="**/*" />
+      </zipfileset>
+    </war>
+
+  </target>
+
+</project>
