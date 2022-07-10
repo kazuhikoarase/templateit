@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <project xmlns:unless="ant:unless" basedir="." default="all">
 
-  <property name="project.root" location="../" />
+  <!-- template package name (default: com.example) -->
   <property name="template-package-name" value="com.example"
       unless:set="property" />
 
@@ -11,7 +11,8 @@
       ?: any character
     -->
   <property name="text-files">
-    *.txt *.md *.sh *.bat *.cmd *.ps1
+
+  	*.txt *.md *.sh *.bat *.cmd *.ps1
     *.html *.htm *.js *.jsx *.json *.ts
     *.css *.scss
     *.xml *.xsl *.xsd *.xmi
@@ -35,12 +36,14 @@
     *.mxml *.as
     .flexProperties
     .actionScriptProperties
+
   </property>
 
-	<property name="work" location="work" />
+  <property name="project.root" location="../" />
+  <property name="work" location="work" />
   <property name="dist" location="dist" />
 
-  <target name="all" depends="jar" />
+  <target name="all" depends="create-executable-jar" />
 
   <target name="init">
     <tstamp>
@@ -54,7 +57,7 @@
     <delete dir="${dist}" />
   </target>
 
-  <target name="jar" depends="init">
+  <target name="create-executable-jar" depends="init">
 
     <!-- create work directory -->
     <mkdir dir="${work}" />

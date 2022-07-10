@@ -24,7 +24,7 @@ public class Util {
     final StringBuilder buf = new StringBuilder();
     boolean firstPeriod = false;
     for (int i = 0; i < s.length(); i += 1) {
-      char c = s.charAt(i);
+      final char c = s.charAt(i);
       if (c == '.') {
         if (!firstPeriod) {
           buf.append("(\\W)");
@@ -43,13 +43,13 @@ public class Util {
     final StringBuilder regex = new StringBuilder();
     regex.append("^(");
     final String[] files = textFiles.split("\\s+");
-    for (int fi = 0; fi < files.length; fi += 1) {
-      if (fi > 0) {
+    for (int i = 0; i < files.length; i += 1) {
+      if (i > 0) {
         regex.append('|');
       }
-      final String file = files[fi];
-      for (int ci = 0; ci < file.length(); ci += 1) {
-        final char c = file.charAt(ci);
+      final String file = files[i];
+      for (int j = 0; j < file.length(); j += 1) {
+        final char c = file.charAt(j);
         if ('A' <= c && c < 'Z' || 'a' <= c && c < 'z' ||
             '0' <= c && c < '9') {
           regex.append(c);

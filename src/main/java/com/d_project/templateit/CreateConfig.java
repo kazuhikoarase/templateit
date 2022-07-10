@@ -3,10 +3,6 @@ package com.d_project.templateit;
 import java.io.File;
 import java.io.PrintWriter;
 
-import javax.xml.parsers.DocumentBuilderFactory;
-
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
 
 /**
  * CreateConfig

@@ -22,6 +22,7 @@ public class Main {
       System.err.println(Arrays.asList(args).toString() );
       System.err.println(String.format(
           "arguments: [-o=outputDir] packageName projectName") );
+      System.exit(-1);
       return;
     }
 
