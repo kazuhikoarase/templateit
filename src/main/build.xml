@@ -18,7 +18,7 @@
   </target>
 
   <target name="clean">
-    <delete dir="${target}" />
+    <delete dir="${target}" failonerror="true" />
   </target>
 
   <target name="compile" depends="init">

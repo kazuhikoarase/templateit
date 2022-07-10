@@ -54,7 +54,7 @@
   </target>
 
 	<target name="clean">
-    <delete dir="${dist}" />
+    <delete dir="${dist}" failonerror="true" />
   </target>
 
   <target name="create-executable-jar" depends="init">
@@ -80,13 +80,19 @@
 
     <unjar src="templateit.jar" dest="${work}" />
 
+    <property name="work.rel" value="${work}"
+      basedir="${project.root}" relative="yes" />
+    <property name="dist.rel" value="${dist}"
+      basedir="${project.root}" relative="yes" />
+
     <!-- configure here for template file set. -->
     <zip destfile="${work}/${template-file}">
       <zipfileset dir="${project.root}">
         <!-- includes -->
         <include name="**/*" />
-        <!-- excludes (templateit itself) -->
-        <exclude name="templateit/**" />
+        <!-- excludes (templateit work, dist) -->
+        <exclude name="${work.rel}/**" />
+        <exclude name="${dist.rel}/**" />
         <!-- excludes (others) -->
         <exclude name="bin/**" />
         <exclude name="build/**" />

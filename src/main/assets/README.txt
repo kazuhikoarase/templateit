@@ -4,19 +4,22 @@ Usage
 
 1. Place templateit files under your project directory.
 
-project_name/
+your_project/
              templateit/
                         README.txt
                         build.xml
                         .gitignore
                         templateit.jar
 
-2. Run build.xml
+2. Run build.xml.
 
-3. Check your template jar (executive)
+your_project/
+             templateit/
+                        build.xml <-
 
-project_name/
+3. Check your template jar (executable).
+
+your_project/
              templateit/
                         dist/
-                             project_name + '.v' + timestamp + '.jar'
-
+                             your_project + '.v' + timestamp + '.jar'
