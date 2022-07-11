@@ -2,7 +2,6 @@ package com.d_project.templateit;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Arrays;
 import java.util.Properties;
 
 
@@ -19,7 +18,6 @@ public class Main {
 
     // check arguments count.
     if (args.length != 2) {
-      System.err.println(Arrays.asList(args).toString() );
       System.err.println(String.format(
           "arguments: [-o=outputDir] packageName projectName") );
       System.exit(-1);
