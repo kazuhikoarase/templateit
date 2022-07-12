@@ -12,7 +12,7 @@
     -->
   <property name="text-files">
 
-  	*.txt *.md *.sh *.bat *.cmd *.ps1
+    *.txt *.md *.sh *.bat *.cmd *.ps1
     *.html *.htm *.js *.jsx *.json *.ts
     *.css *.scss
     *.xml *.xsl *.xsd *.xmi
